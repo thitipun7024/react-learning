@@ -1,15 +1,23 @@
-import { useState } from 'react'
-import './App.css'
-import Mybutton from './MyComponent/Mybutton'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './MyComponent/Home';
+import Login from './MyComponent/login';
+import './App.css';
+import { useEffect, useState } from 'react';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [loggedIn, setLoggedIn] = useState(false)
+  const [email, setEmail] = useState("")
 
   return (
-    <>
-    <Mybutton />
-    </>
-  )
-}
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home email={email} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
+          <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setEmail={setEmail} />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
+  }
 
-export default App
+export default App;
